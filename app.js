@@ -1,10 +1,17 @@
 const express = require("express");
+const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => res.type('html').send(html));
 
 app.get("/test", (req, res) => res.send("Hello, World!"));
+
+app.get('/example', async (req, res) => {
+    const response = await fetch('http://www.example.com');
+    const body = await response.text();
+    res.send(body);
+});
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
